@@ -1,13 +1,11 @@
-const myLibrary = ['Harry Potter', 'How to Kill a Dragon', 'Birdman', 'Steve Jobs'];
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() { 
-        return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + this.read
-    };
+    this.index = myLibrary.length;
 }
 
 function addBookToLibrary(book) {
@@ -15,30 +13,38 @@ function addBookToLibrary(book) {
     console.log(myLibrary);
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "not read yet");
-console.log(theHobbit.info());
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "no");
+myLibrary.push(thehobbit);
+const harrypotter = new Book("Harry Potter", "J.K. Rowling", "200", "no");
+myLibrary.push(harrypotter);
+const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "630", "no");
+myLibrary.push(howtokilladragon);
+const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "no");
+myLibrary.push(stevejobs);
+console.log(myLibrary);
 
 const container = document.querySelector(".container");
 let book
 let deleteBtn
 
-for (myBook of myLibrary) {
+myLibrary.forEach((myBook) => {
     book = document.createElement("div");
     book.classList.add("book");
-    book.textContent = myBook;
+    book.textContent = myBook.title;
     deleteBtn = document.createElement("button");
     deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add("delete");
     book.appendChild(deleteBtn);
-    console.log(book);
     container.appendChild(book);
-};
+});
 
 function updateLibrary() {
     book = document.createElement("div");
     book.classList.add("book");
-    book.textContent = myLibrary[myLibrary.length - 1];
+    book.textContent = myLibrary[myLibrary.length - 1].title;
     deleteBtn = document.createElement("button");
     deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add("delete");
     book.appendChild(deleteBtn);
     container.appendChild(book);
 }
@@ -62,12 +68,23 @@ addBtn.addEventListener('click', (event) => {
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
     const newRead = document.getElementById('read').value;
-    let newBook = new Book(newTitle, newAuthor, newPages, newRead);
-    addBookToLibrary(newBook);
+    myLibrary.push(new Book(newTitle, newAuthor, newPages, newRead));
+    //addBookToLibrary(newBook);
     dialog.close();
     form.reset();
     updateLibrary();
+    console.log(myLibrary);
 })
 
+const allDelBtns = document.querySelectorAll(".delete")
+allDelBtns.forEach(function(btn) {
+    btn.addEventListener('click', () => {
+        container.removeChild(btn.parentNode);
+        console.log('what');
+        console.log(btn.parentNode);
+        myLibrary.splice(btn.parentNode.index, 1);
+        console.log(myLibrary);
+    })
+})
 
-
+console.log(myLibrary);
