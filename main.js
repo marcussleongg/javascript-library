@@ -1,4 +1,4 @@
-const myLibrary = [];
+const myLibrary = ['Harry Potter', 'How to Kill a Dragon', 'Birdman'];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -18,9 +18,12 @@ const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "not read yet"
 console.log(theHobbit.info());
 
 const container = document.querySelector(".container");
+let book
 
-const book = document.createElement("div");
-book.classList.add("book");
-book.textContent = 'Harry Potterer';
-console.log(book);
-container.appendChild(book);
+for (myBook of myLibrary) {
+    book = document.createElement("div");
+    book.classList.add("book");
+    book.textContent = myBook;
+    console.log(book);
+    container.appendChild(book);
+}
