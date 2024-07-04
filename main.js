@@ -41,7 +41,7 @@ myLibrary.forEach((myBook) => {
 function updateLibrary() {
     book = document.createElement("div");
     book.classList.add("book");
-    book.textContent = myLibrary[myLibrary.length - 1].title;
+    book.textContent = `${myLibrary[myLibrary.length - 1].title}, ${myLibrary[myLibrary.length - 1].author}, ${myLibrary[myLibrary.length - 1].pages}, ${myLibrary[myLibrary.length - 1].read}`;
     deleteBtn = document.createElement("button");
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add("delete");
