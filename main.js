@@ -30,7 +30,7 @@ let deleteBtn
 myLibrary.forEach((myBook) => {
     book = document.createElement("div");
     book.classList.add("book");
-    book.textContent = myBook.title;
+    book.textContent = `${myBook.title}, ${myBook.author}, ${myBook.pages}, ${myBook.read}`;
     deleteBtn = document.createElement("button");
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add("delete");
