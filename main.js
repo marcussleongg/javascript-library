@@ -1,4 +1,4 @@
-const myLibrary = ['Harry Potter', 'How to Kill a Dragon', 'Birdman'];
+const myLibrary = ['Harry Potter', 'How to Kill a Dragon', 'Birdman', 'Steve Jobs'];
 
 function Book(title, author, pages, read) {
     this.title = title;
