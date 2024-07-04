@@ -27,6 +27,13 @@ for (myBook of myLibrary) {
     book.textContent = myBook;
     console.log(book);
     container.appendChild(book);
+};
+
+function updateLibrary() {
+    book = document.createElement("div");
+    book.classList.add("book");
+    book.textContent = myLibrary[myLibrary.length - 1];
+    container.appendChild(book);
 }
 
 const dialog = document.querySelector('dialog');
@@ -52,5 +59,6 @@ addBtn.addEventListener('click', (event) => {
     addBookToLibrary(newBook);
     dialog.close();
     form.reset();
+    updateLibrary();
 })
 
