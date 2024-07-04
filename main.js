@@ -10,8 +10,9 @@ function Book(title, author, pages, read) {
     };
 }
 
-function addBookToLibrary() {
-    myLibrary.push(this.title)
+function addBookToLibrary(book) {
+    myLibrary.push(book.title);
+    console.log(myLibrary);
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "not read yet");
@@ -28,12 +29,28 @@ for (myBook of myLibrary) {
     container.appendChild(book);
 }
 
-const dialog = document.querySelector("dialog");
-const closeBtn = document.querySelector("dialog button")
-const addBtn = document.querySelector('#add');
-addBtn.addEventListener('click', () => {
+const dialog = document.querySelector('dialog');
+const closeBtn = document.querySelector('dialog button');
+const form = document.querySelector('form');
+const newBookBtn = document.querySelector('#new');
+newBookBtn.addEventListener('click', () => {
     dialog.showModal();
 });
 closeBtn.addEventListener('click', () => {
     dialog.close();
+    form.reset();
 });
+
+const addBtn = document.querySelector('#add')
+addBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const newTitle = document.getElementById('title').value;
+    const newAuthor = document.getElementById('author').value;
+    const newPages = document.getElementById('pages').value;
+    const newRead = document.getElementById('read').value;
+    let newBook = new Book(newTitle, newAuthor, newPages, newRead);
+    addBookToLibrary(newBook);
+    dialog.close();
+    form.reset();
+})
+
