@@ -8,3 +8,7 @@
     background-color: rgb(207, 207, 190);
     font-size: 3em;
 }
+
+form {
+    display: grid;
+}
