@@ -27,3 +27,13 @@ for (myBook of myLibrary) {
     console.log(book);
     container.appendChild(book);
 }
+
+const dialog = document.querySelector("dialog");
+const closeBtn = document.querySelector("dialog button")
+const addBtn = document.querySelector('#add');
+addBtn.addEventListener('click', () => {
+    dialog.showModal();
+});
+closeBtn.addEventListener('click', () => {
+    dialog.close();
+});
