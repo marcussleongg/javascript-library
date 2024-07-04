@@ -20,11 +20,15 @@ console.log(theHobbit.info());
 
 const container = document.querySelector(".container");
 let book
+let deleteBtn
 
 for (myBook of myLibrary) {
     book = document.createElement("div");
     book.classList.add("book");
     book.textContent = myBook;
+    deleteBtn = document.createElement("button");
+    deleteBtn.textContent = 'Delete';
+    book.appendChild(deleteBtn);
     console.log(book);
     container.appendChild(book);
 };
@@ -33,6 +37,9 @@ function updateLibrary() {
     book = document.createElement("div");
     book.classList.add("book");
     book.textContent = myLibrary[myLibrary.length - 1];
+    deleteBtn = document.createElement("button");
+    deleteBtn.textContent = 'Delete';
+    book.appendChild(deleteBtn);
     container.appendChild(book);
 }
 
@@ -61,4 +68,6 @@ addBtn.addEventListener('click', (event) => {
     form.reset();
     updateLibrary();
 })
+
+
 
