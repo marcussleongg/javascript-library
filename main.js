@@ -23,6 +23,18 @@ const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "no");
 myLibrary.push(stevejobs);
 console.log(myLibrary);
 
+let allDelBtns;
+function enableDelBtns() {
+    allDelBtns = document.querySelectorAll(".delete");
+    console.log(allDelBtns);
+    allDelBtns.forEach(function(btn) {
+        btn.addEventListener('click', () => {
+            container.removeChild(btn.parentNode);
+            myLibrary.splice(btn.parentNode.index, 1);
+        })
+    })
+};
+
 const container = document.querySelector(".container");
 let book
 let deleteBtn
@@ -37,6 +49,8 @@ myLibrary.forEach((myBook) => {
     book.appendChild(deleteBtn);
     container.appendChild(book);
 });
+
+enableDelBtns();
 
 function updateLibrary() {
     book = document.createElement("div");
@@ -73,18 +87,8 @@ addBtn.addEventListener('click', (event) => {
     dialog.close();
     form.reset();
     updateLibrary();
+    enableDelBtns();
     console.log(myLibrary);
-})
-
-const allDelBtns = document.querySelectorAll(".delete")
-allDelBtns.forEach(function(btn) {
-    btn.addEventListener('click', () => {
-        container.removeChild(btn.parentNode);
-        console.log('what');
-        console.log(btn.parentNode);
-        myLibrary.splice(btn.parentNode.index, 1);
-        console.log(myLibrary);
-    })
 })
 
 console.log(myLibrary);
