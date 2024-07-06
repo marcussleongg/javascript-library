@@ -32,9 +32,7 @@ let allDelBtns;
 let deleteBtn;
 function enableDelBtns() {
     allDelBtns = document.querySelectorAll(".delete");
-    console.log('im running');
     allDelBtns.forEach((btn) => {
-        console.log(btn.parentNode);
         btn.addEventListener('click', () => {
             container.removeChild(btn.parentNode);
             let info = btn.previousSibling.textContent;
@@ -52,7 +50,36 @@ function addDelBtn(bookNeedingDelBtn) {
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add("delete");
     bookNeedingDelBtn.appendChild(deleteBtn);
-}
+};
+
+//function to provide all change read status buttons with algorithm
+function enableStatusBtns() {
+    allStatusBtns = document.querySelectorAll('.status');
+    allStatusBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            let info = btn.previousSibling.previousSibling.textContent;
+            let bookTitle = info.substring(0, info.indexOf(','));
+            let index = myLibrary.map(e => e.title).indexOf(bookTitle);
+            if (myLibrary[index].read == 'unread') {
+                myLibrary[index].read = 'read';
+                console.log('changed');
+            } else {
+                myLibrary[index].read = 'unread';
+                console.log('changed');
+            }
+            console.log(myLibrary);
+            updateLibrary();
+        })
+    })
+};
+let statusBtn;
+//function to add change read status button
+function addStatusBtn(bookNeedingStatusBtn) {
+    statusBtn = document.createElement('button');
+    statusBtn.textContent = 'Change Read Status';
+    statusBtn.classList.add('status');
+    bookNeedingStatusBtn.appendChild(statusBtn);
+};
 
 //function for updating the books in the library(display) by first removing all child elements in container and then re-adding all from myLibrary array
 let book
@@ -65,12 +92,15 @@ function updateLibrary() {
         book.classList.add("book");
         book.textContent = `${myBook.title}, ${myBook.author}, ${myBook.pages}, ${myBook.read}`;
         addDelBtn(book);
+        addStatusBtn(book);
         container.appendChild(book);
     });
+    enableDelBtns();
+    enableStatusBtns();
 }
 
+//initialize the books already in myLibrary
 updateLibrary();
-enableDelBtns();
 
 //function to add book to library(display) and add the delete button
 //function updateLibrary() {
@@ -112,6 +142,7 @@ addBtn.addEventListener('click', (event) => {
     form.reset();
     updateLibrary();
     enableDelBtns();
+    enableStatusBtns();
     console.log(myLibrary);
 })
 
