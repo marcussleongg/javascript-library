@@ -21,17 +21,27 @@ body {
 .book {
     background-color: white;
     font-size: 2em;
-    white-space: pre-wrap;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     align-items: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.title {
+    font-weight: bold;
 }
 
 .delete, .status {
     width: 30%;
     height: 3em;
+}
+
+.delete {
+    background-color: rgb(212, 43, 43);
+    color: white;
 }
 
 form {
