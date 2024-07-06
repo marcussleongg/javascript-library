@@ -41,36 +41,45 @@ function enableDelBtns() {
             let bookTitle = info.substring(0, info.indexOf(','));
             let index = myLibrary.map(e => e.title).indexOf(bookTitle);
             myLibrary.splice(index, 1);
+            console.log(myLibrary);
         })
     })
 };
 
-//initializing books for the library(display)
-let book
-myLibrary.forEach((myBook) => {
-    book = document.createElement("div");
-    book.classList.add("book");
-    book.textContent = `${myBook.title}, ${myBook.author}, ${myBook.pages}, ${myBook.read}`;
+//function to add delete button
+function addDelBtn(bookNeedingDelBtn) {
     deleteBtn = document.createElement("button");
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add("delete");
-    book.appendChild(deleteBtn);
-    container.appendChild(book);
-});
+    bookNeedingDelBtn.appendChild(deleteBtn);
+}
 
+//function for updating the books in the library(display) by first removing all child elements in container and then re-adding all from myLibrary array
+let book
+function updateLibrary() {
+    while (container.firstChild) {
+        container.removeChild(container.lastChild);
+    };
+    myLibrary.forEach((myBook) => {
+        book = document.createElement("div");
+        book.classList.add("book");
+        book.textContent = `${myBook.title}, ${myBook.author}, ${myBook.pages}, ${myBook.read}`;
+        addDelBtn(book);
+        container.appendChild(book);
+    });
+}
+
+updateLibrary();
 enableDelBtns();
 
 //function to add book to library(display) and add the delete button
-function updateLibrary() {
-    book = document.createElement("div");
-    book.classList.add("book");
-    book.textContent = `${myLibrary[myLibrary.length - 1].title}, ${myLibrary[myLibrary.length - 1].author}, ${myLibrary[myLibrary.length - 1].pages}, ${myLibrary[myLibrary.length - 1].read}`;
-    deleteBtn = document.createElement("button");
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.classList.add("delete");
-    book.appendChild(deleteBtn);
-    container.appendChild(book);
-}
+//function updateLibrary() {
+    //book = document.createElement("div");
+    //book.classList.add("book");
+    //book.textContent = `${myLibrary[myLibrary.length - 1].title}, ${myLibrary[myLibrary.length - 1].author}, ${myLibrary[myLibrary.length - 1].pages}, ${myLibrary[myLibrary.length - 1].read}`;
+    //addDelBtn(book);
+    //container.appendChild(book);
+//}
 
 //setting up the new book button and buttons in the pop up modal
 const dialog = document.querySelector('dialog');
@@ -99,7 +108,6 @@ addBtn.addEventListener('click', (event) => {
         newRead = 'unread'
     }
     myLibrary.push(new Book(newTitle, newAuthor, newPages, newRead));
-    //addBookToLibrary(newBook);
     dialog.close();
     form.reset();
     updateLibrary();
