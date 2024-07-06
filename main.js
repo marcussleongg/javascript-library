@@ -17,13 +17,13 @@ function Book(title, author, pages, read) {
 //}
 
 //initializing books for myLibrary array
-const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "read");
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "Read");
 myLibrary.push(thehobbit);
-const harrypotter = new Book("Harry Potter", "J.K. Rowling", "200", "unread");
+const harrypotter = new Book("Harry Potter", "J.K. Rowling", "200", "Unread");
 myLibrary.push(harrypotter);
-const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "630", "unread");
+const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "630", "Unread");
 myLibrary.push(howtokilladragon);
-const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "read");
+const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "Read");
 myLibrary.push(stevejobs);
 //console.log(myLibrary);
 
@@ -35,11 +35,10 @@ function enableDelBtns() {
     allDelBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             container.removeChild(btn.parentNode);
-            let info = btn.previousSibling.textContent;
-            let bookTitle = info.substring(0, info.indexOf(','));
-            let index = myLibrary.map(e => e.title).indexOf(bookTitle);
+            let bookChangeTitle = btn.previousSibling.previousSibling.previousSibling.previousSibling.textContent;
+            let index = myLibrary.map(e => e.title).indexOf(bookChangeTitle);
             myLibrary.splice(index, 1);
-            //console.log(myLibrary);
+            console.log(myLibrary);
         })
     })
 };
@@ -57,14 +56,13 @@ function enableStatusBtns() {
     allStatusBtns = document.querySelectorAll('.status');
     allStatusBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-            let info = btn.previousSibling.previousSibling.textContent;
-            let bookTitle = info.substring(0, info.indexOf(','));
-            let index = myLibrary.map(e => e.title).indexOf(bookTitle);
-            if (myLibrary[index].read == 'unread') {
-                myLibrary[index].read = 'read';
+            let bookChangeTitle = btn.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.textContent;
+            let index = myLibrary.map(e => e.title).indexOf(bookChangeTitle);
+            if (myLibrary[index].read == 'Unread') {
+                myLibrary[index].read = 'Read';
                 //console.log('changed');
             } else {
-                myLibrary[index].read = 'unread';
+                myLibrary[index].read = 'Unread';
                 //console.log('changed');
             }
             //console.log(myLibrary);
@@ -90,7 +88,22 @@ function updateLibrary() {
     myLibrary.forEach((myBook) => {
         book = document.createElement("div");
         book.classList.add("book");
-        book.textContent = `${myBook.title}, ${myBook.author}, ${myBook.pages}, ${myBook.read}`;
+        let bookTitle = document.createElement("div");
+        bookTitle.classList.add("title");
+        let bookAuthor = document.createElement("div");
+        bookAuthor.classList.add("author");
+        let bookPages = document.createElement("div");
+        bookPages.classList.add("pages");
+        let bookRead = document.createElement("div");
+        bookRead.classList.add("read");
+        bookTitle.textContent = myBook.title;
+        bookAuthor.textContent = myBook.author;
+        bookPages.textContent = `${myBook.pages} pages`;
+        bookRead.textContent = myBook.read;
+        book.appendChild(bookTitle);
+        book.appendChild(bookAuthor);
+        book.appendChild(bookPages);
+        book.appendChild(bookRead);
         addDelBtn(book);
         addStatusBtn(book);
         container.appendChild(book);
@@ -133,9 +146,9 @@ addBtn.addEventListener('click', (event) => {
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
     if (document.getElementById('read').checked == true) {
-        newRead = 'read'
+        newRead = 'Read'
     } else {
-        newRead = 'unread'
+        newRead = 'Unread'
     }
     myLibrary.push(new Book(newTitle, newAuthor, newPages, newRead));
     dialog.close();

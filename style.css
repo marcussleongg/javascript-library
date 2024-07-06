@@ -1,12 +1,37 @@
+body {
+    background-color: rgb(207, 207, 190);
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    gap: 2em;
+}
+
+#new {
+    width: 30%;
+    height: 3em;
+}
+
 .container {
+    width: 80vw;
     display: grid;
     gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .book {
-    background-color: rgb(207, 207, 190);
-    font-size: 3em;
+    background-color: white;
+    font-size: 2em;
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.delete, .status {
+    width: 30%;
+    height: 3em;
 }
 
 form {
