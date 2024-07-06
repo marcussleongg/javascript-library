@@ -141,8 +141,6 @@ addBtn.addEventListener('click', (event) => {
     dialog.close();
     form.reset();
     updateLibrary();
-    enableDelBtns();
-    enableStatusBtns();
     console.log(myLibrary);
 })
 
