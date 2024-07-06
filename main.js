@@ -30,7 +30,12 @@ function enableDelBtns() {
     allDelBtns.forEach(function(btn) {
         btn.addEventListener('click', () => {
             container.removeChild(btn.parentNode);
-            myLibrary.splice(btn.parentNode.index, 1);
+            let info = btn.previousSibling.textContent;
+            let bookTitle = info.substring(0, info.indexOf(','));
+            let index = myLibrary.map(e => e.title).indexOf(bookTitle);
+            console.log(index);
+            myLibrary.splice(index, 1);
+            console.log(myLibrary);
         })
     })
 };
