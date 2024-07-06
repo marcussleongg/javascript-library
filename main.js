@@ -11,10 +11,10 @@ function Book(title, author, pages, read) {
 }
 
 //no longer used function
-function addBookToLibrary(book) {
-    myLibrary.push(book.title);
-    console.log(myLibrary);
-}
+//function addBookToLibrary(book) {
+    //myLibrary.push(book.title);
+    //console.log(myLibrary);
+//}
 
 //initializing books for myLibrary array
 const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "read");
@@ -25,7 +25,7 @@ const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "63
 myLibrary.push(howtokilladragon);
 const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "read");
 myLibrary.push(stevejobs);
-console.log(myLibrary);
+//console.log(myLibrary);
 
 //function to provide all delete buttons with algorithm for removing book from library(display) and myLibrary array
 let allDelBtns;
@@ -39,7 +39,7 @@ function enableDelBtns() {
             let bookTitle = info.substring(0, info.indexOf(','));
             let index = myLibrary.map(e => e.title).indexOf(bookTitle);
             myLibrary.splice(index, 1);
-            console.log(myLibrary);
+            //console.log(myLibrary);
         })
     })
 };
@@ -62,12 +62,12 @@ function enableStatusBtns() {
             let index = myLibrary.map(e => e.title).indexOf(bookTitle);
             if (myLibrary[index].read == 'unread') {
                 myLibrary[index].read = 'read';
-                console.log('changed');
+                //console.log('changed');
             } else {
                 myLibrary[index].read = 'unread';
-                console.log('changed');
+                //console.log('changed');
             }
-            console.log(myLibrary);
+            //console.log(myLibrary);
             updateLibrary();
         })
     })
@@ -141,7 +141,7 @@ addBtn.addEventListener('click', (event) => {
     dialog.close();
     form.reset();
     updateLibrary();
-    console.log(myLibrary);
+    //console.log(myLibrary);
 })
 
-console.log(myLibrary);
+//console.log(myLibrary);
