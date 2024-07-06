@@ -1,6 +1,7 @@
 const myLibrary = [];
 const container = document.querySelector(".container");
 
+//book object prototype
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -9,40 +10,43 @@ function Book(title, author, pages, read) {
     this.index = myLibrary.length;
 }
 
+//no longer used function
 function addBookToLibrary(book) {
     myLibrary.push(book.title);
     console.log(myLibrary);
 }
 
-const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "no");
+//initializing books for myLibrary array
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "read");
 myLibrary.push(thehobbit);
-const harrypotter = new Book("Harry Potter", "J.K. Rowling", "200", "no");
+const harrypotter = new Book("Harry Potter", "J.K. Rowling", "200", "unread");
 myLibrary.push(harrypotter);
-const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "630", "no");
+const howtokilladragon = new Book("How To Kill A Dragon", "Calvert Watkins", "630", "unread");
 myLibrary.push(howtokilladragon);
-const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "no");
+const stevejobs = new Book("Steve Jobs", "Walter Isaacson", "656", "read");
 myLibrary.push(stevejobs);
 console.log(myLibrary);
 
+//function to provide all delete buttons with algorithm for removing book from library(display) and myLibrary array
 let allDelBtns;
+let deleteBtn;
 function enableDelBtns() {
     allDelBtns = document.querySelectorAll(".delete");
-    allDelBtns.forEach(function(btn) {
+    console.log('im running');
+    allDelBtns.forEach((btn) => {
+        console.log(btn.parentNode);
         btn.addEventListener('click', () => {
             container.removeChild(btn.parentNode);
             let info = btn.previousSibling.textContent;
             let bookTitle = info.substring(0, info.indexOf(','));
             let index = myLibrary.map(e => e.title).indexOf(bookTitle);
-            //console.log(index);
             myLibrary.splice(index, 1);
-            //console.log(myLibrary);
         })
     })
 };
 
+//initializing books for the library(display)
 let book
-let deleteBtn
-
 myLibrary.forEach((myBook) => {
     book = document.createElement("div");
     book.classList.add("book");
@@ -56,6 +60,7 @@ myLibrary.forEach((myBook) => {
 
 enableDelBtns();
 
+//function to add book to library(display) and add the delete button
 function updateLibrary() {
     book = document.createElement("div");
     book.classList.add("book");
@@ -67,6 +72,7 @@ function updateLibrary() {
     container.appendChild(book);
 }
 
+//setting up the new book button and buttons in the pop up modal
 const dialog = document.querySelector('dialog');
 const closeBtn = document.querySelector('dialog button');
 const form = document.querySelector('form');
@@ -79,6 +85,7 @@ closeBtn.addEventListener('click', () => {
     form.reset();
 });
 
+//event listener for add book button in the pop up modal, where the add button closes the modal, adds the book to both myLibrary array and the library(display), and gets the delete buttons working
 const addBtn = document.querySelector('#add')
 addBtn.addEventListener('click', (event) => {
     let newRead;
