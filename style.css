@@ -74,4 +74,46 @@ body {
 
 form {
     display: grid;
+    gap: 0.5em;
+    padding-left: 2%;
+}
+
+dialog {
+    width: 30vw;
+    background-color: rgb(198, 202, 146);
+}
+
+dialog > button {
+    position: relative;
+    left: 93%;
+    font-weight: bold;
+}
+
+form label {
+    font-weight: bold;
+    position: relative;
+    top: 0.5em;
+}
+
+form input {
+    width: 95%;
+}
+
+#pages + label {
+    justify-self: center;
+}
+
+#read {
+    justify-self: center;
+    margin-top: 0.6em;
+}
+
+form button {
+    width: 30%;
+    height: 2.5em;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(57, 182, 57);
+    justify-self: center;
+    margin-top: 1em;
 }
