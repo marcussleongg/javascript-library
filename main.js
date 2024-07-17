@@ -1,13 +1,14 @@
 const myLibrary = [];
 const container = document.querySelector(".container");
 
-//book object prototype
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.index = myLibrary.length;
+//book class
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 //no longer used function
